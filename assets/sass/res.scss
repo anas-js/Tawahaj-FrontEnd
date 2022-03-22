@@ -1,0 +1,276 @@
+@media (max-width:1345px) {
+  .main-img {
+    margin-left: 85px;
+  }
+}
+@media (max-width:1200px) {
+  .main-img {
+    margin-left: 50px;
+    .main {
+      width:220px;
+    }
+    // .per1 {
+    //   width: 50px
+    // }
+
+    // .per2 {
+    //   width: 60px
+    // }
+    @for $i from 1 through 8 {
+      .per#{$i} {
+
+        @if $i == 8 {
+          width: ($i * 10) + 10px;
+        } @else {
+          width: ($i * 10) + 30px;
+        }
+      }
+    }
+
+  }
+}
+
+@media (max-width:991px) {
+  .footer {
+    .links {
+      margin-top: 50px;
+    }
+  }
+  .main-img {
+    margin-top: 100px;
+    .main {
+      width:315px;
+    }
+    @for $i from 1 through 8 {
+      .per#{$i} {
+        width : auto !important;
+        // @if $i == 8 {
+        //   width: ($i * 10) + 10px;
+        // } @else {
+        //   width: ($i * 10) + 30px;
+        // }
+      }
+    }
+  }
+  .Header .links {
+    display: none;
+  }
+
+  .about-us {
+    .search-creator {
+      padding: 30px;
+      margin-top: 100px;
+      width: 100%;
+
+    }
+
+    .how-are-you {
+      padding: 30px;
+      padding-bottom: 100px;
+      width: 100%;
+    }
+
+    .logo-center {
+      transform: translate(-50%,65%);
+      left: 50%;
+      bottom: 0;
+    }
+  }
+
+  .join-us .container > div img {
+     margin: 0 auto;
+    margin-top: 100px;
+}
+.join-us .container > div .text {
+  margin-right: 0;
+}
+
+.list-mobile-btn {
+  display: inline-block;
+}
+}
+
+@media (max-width:767px) {
+  .main-img {
+    margin-left: 0;
+    .main {
+      width:280px;
+    }
+    // .per1 {
+    //   width: 50px
+    // }
+
+    // .per2 {
+    //   width: 60px
+    // }
+    @for $i from 1 through 8 {
+      .per#{$i} {
+
+        @if $i == 8 {
+          width: ($i * 10) + 10px;
+        } @else {
+          width: ($i * 10) + 30px;
+        }
+      }
+    }
+
+  }
+}
+
+@media (max-width:767px) {
+  .main-img {
+    .main {
+      width:210px;
+    }
+    // .per1 {
+    //   width: 50px
+    // }
+
+    // .per2 {
+    //   width: 60px
+    // }
+    @for $i from 1 through 8 {
+      .per#{$i} {
+
+        @if $i == 8 {
+          width: ($i * 10) + 8px !important;
+        } @else {
+          width: ($i * 10) + 30px !important;
+        }
+      }
+    }
+
+    .creat-number {
+      top: 50%;
+      left: 35%;
+
+    }
+  }
+}
+
+@media (max-width:575px) {
+  .footer .links > div > div >div {
+    margin-top: 10px;
+  }
+  .justify-content-me-center {
+    justify-content: center;
+  }
+
+  .creator-content {
+    .user-box {
+      .orange-btn {
+            position: relative;
+        display: block;
+    transform: none;
+    margin: 20px;
+    text-align: center;
+    left: 0;
+    top: 0;
+      }
+
+      .user-text {
+        max-width: calc(100% - 125px);
+      }
+    }
+  }
+
+  .Header {
+    .left-btn {
+      display: none;
+    }
+   .username {
+     display: none;
+   }
+  }
+  .list-user-btn {
+    display: inline-block;
+  }
+}
+
+@media (max-width:490px) {
+  .list-user-active, .list-mobile-active,.list-mobile, .list-user {
+    width: 70%;
+  }
+  .main-img {
+    .main {
+      width: 165px !important;
+    }
+
+    @for $i from 1 through 8 {
+      .per#{$i} {
+
+        @if $i == 8 {
+          width: ($i * 10) + 1px !important;
+        } @else {
+          width: ($i * 10) + 15px !important;
+        }
+      }
+    }
+
+    .creat-number {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, 0%);
+      padding: 5px;
+    }
+  }
+  .join-us .container > div img {
+    width: 80%;
+  }
+}
+
+
+@media (max-width:335px) {
+  .main-text .main-btn a {
+    display: block;
+    text-align: center;
+  }
+
+  .main-text .main-btn a:last-of-type {
+    margin-top: 20px;
+  }
+}
+
+
+@media (max-width:285px) {
+  .main-img {
+    // position: relative;
+    // width: 100%;
+    .per,.path-main {
+      display: none;
+    }
+
+    .main {
+      width: 80% !important;
+      margin: 0 auto;
+      display: block;
+    }
+
+    .main-shadow {
+      height: 100%;
+    }
+
+    .creat-number {
+      width: 90%;
+    }
+  }
+
+  .creator-content .user-box .image-user {
+    display:block;
+    margin: 0 auto;
+  }
+
+  .user-box  {
+    text-align: center;
+  }
+
+  .creator-content .user-box .user-text .username {
+    text-align: center;
+  }
+
+  .creator-content .user-box .user-text {
+    max-width: 90% !important;
+  }
+}
+
+
