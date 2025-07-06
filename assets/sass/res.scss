@@ -88,8 +88,21 @@
 .list-mobile-btn {
   display: inline-block;
 }
+
+.profile-text {
+  margin-top: 50px;
 }
 
+.profile-user .profile-text .userAndDes {
+  width: 100%;
+}
+}
+
+@media (max-width:900px) {
+  .login .rigth-login .form {
+    width: 80%;
+  }
+}
 @media (max-width:767px) {
   .main-img {
     margin-left: 0;
@@ -146,6 +159,15 @@
 
     }
   }
+
+  .login .left-login {
+    display: none;
+
+  }
+
+  .login .rigth-login {
+    width: 100% !important;
+  }
 }
 
 @media (max-width:575px) {
@@ -156,7 +178,7 @@
     justify-content: center;
   }
 
-  .creator-content {
+
     .user-box {
       .orange-btn {
             position: relative;
@@ -172,7 +194,7 @@
         max-width: calc(100% - 125px);
       }
     }
-  }
+
 
   .Header {
     .left-btn {
@@ -217,6 +239,21 @@
   .join-us .container > div img {
     width: 80%;
   }
+
+  .profile-user .profile-text h1 {
+    width: 100%;
+
+  }
+
+  .profile-user .profile-text .top .orange-btn {
+    display: none;
+  }
+
+  .profile-user .profile-text .bottom .orange-btn {
+    display: block;
+    margin-top: 50px;
+    text-align: center;
+  }
 }
 
 
@@ -255,21 +292,33 @@
     }
   }
 
-  .creator-content .user-box .image-user {
+ .user-box .image-user {
     display:block;
     margin: 0 auto;
   }
+
 
   .user-box  {
     text-align: center;
   }
 
-  .creator-content .user-box .user-text .username {
+.user-box .user-text .username {
     text-align: center;
   }
 
-  .creator-content .user-box .user-text {
+   .user-box .user-text {
     max-width: 90% !important;
+  }
+
+  .profile-user .profile-img {
+    width: 90%;
+    height: 250px;
+    border-radius: 70px;
+
+    img {
+      object-position: center;
+      object-fit: cover;
+    }
   }
 }
 

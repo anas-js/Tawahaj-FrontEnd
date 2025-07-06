@@ -1,5 +1,6 @@
 <template>
   <header class="Header">
+    <p style="text-align: center; margin: 0 auto; background-color: red; color: #fff; margin-bottom: 10px;">هذا الموقع تجريبي يرجى عدم إضافة اي بيانات او حسابات!</p>
     <div class="container">
       <span class="list-mobile-btn" @click="showListMobile"
         ><i class="ri-menu-4-line"></i
@@ -10,45 +11,40 @@
         <li>
           <nuxt-link to="/">الرئيسية<span></span></nuxt-link>
         </li>
-        <li>
+        <!-- <li>
           <nuxt-link to="/">من نحن<span></span></nuxt-link>
+        </li> -->
+        <li>
+          <nuxt-link to="/creators">صناع المحتوى<span></span></nuxt-link>
         </li>
         <li>
-          <nuxt-link to="/">صناع المحتوى<span></span></nuxt-link>
-        </li>
-        <li>
-          <nuxt-link to="/">الأعضاء<span></span></nuxt-link>
+          <nuxt-link to="/members">الأعضاء<span></span></nuxt-link>
         </li>
       </ul>
 
-      <div v-if="$auth.loggedIn === false" class="left-btn">
-        <!-- <nuxt-link to="/" class="orange-btn">
-          <div class="contentText">
-            <i class="icon-5px ri-user-6-line"></i><span>أضف حسابك</span>
-          </div>
-          <span class="shadow"></span>
-        </nuxt-link> -->
-        <orBtn textBtn="أضف حسابك" to="/signup" icon="ri-user-6-line" />
+      <div v-if="$store.state.isLoggin === false" class="left-btn">
+        <orBtn text-btn="أضف حسابك" to="/signup" icon="ri-user-6-line" />
 
         <nuxt-link to="/login" class="blue-btn">
           <i class="icon-5px ri-login-circle-line"></i> تسجيل الدخول
         </nuxt-link>
       </div>
-      <div v-if="$auth.loggedIn" class="username">
-        <img src="/image/background-user.svg" loading="lazy" />
+      <div v-if="$store.state.isLoggin" class="username">
+                <img v-if="$store.state.user.photo" :src="$store.state.user.photoUrl" />
+                 <img v-else src="/image/background-user.svg" />
         <div class="user-info">
-          <p>محمد راكان</p>
+          <p>{{$store.state.user.name}}</p>
           <i class="ri-arrow-down-s-line"></i>
         </div>
 
         <div class="list-user-header">
           <ul>
             <li>
-              <nuxt-link to="/"
+              <nuxt-link :to="`/${$store.state.user.username}`"
                 ><i class="ri-user-6-line"></i> الملف الشخصي</nuxt-link
               >
             </li>
-            <li @click="$auth.logout()">
+            <li @click="logout">
               <nuxt-link to="/"
                 ><i class="ri-logout-circle-line"></i> تسجيل الخروج</nuxt-link
               >
@@ -88,7 +84,7 @@
         ><i class="ri-close-line"></i
       ></span>
       <div>
-        <ul v-if="$auth.loggedIn === false" class="links-mobile">
+        <ul v-if="$store.state.isLoggin === false" class="links-mobile">
           <li>
             <nuxt-link to="/signup"
               ><i class="ri-user-6-line"></i> أضف حسابك</nuxt-link
@@ -101,13 +97,13 @@
           </li>
         </ul>
 
-        <ul v-if="$auth.loggedIn" class="links-mobile login-link-mobile">
+        <ul v-if="$store.state.isLoggin " class="links-mobile login-link-mobile">
           <li>
             <nuxt-link to="/"
               ><i class="ri-user-6-line"></i> الملف الشخصي</nuxt-link
             >
           </li>
-          <li @click="$auth.logout()">
+          <li @click="logout">
             <nuxt-link to="/"
               ><i class="ri-login-circle-line"></i> تسجيل الخروج</nuxt-link
             >
@@ -150,6 +146,11 @@ export default {
       $('.list-mobile').removeClass('list-mobile-active');
       $('.list-user').removeClass('list-user-active');
     },
-  }
+    logout() {
+      this.$store.commit('isLogin', false);
+      this.$store.commit('setUser', "");
+      this.$fire.auth.signOut();
+    },
+  },
 };
 </script>

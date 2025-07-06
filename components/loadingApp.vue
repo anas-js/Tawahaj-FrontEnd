@@ -1,5 +1,5 @@
 <template>
-  <div v-if="load == ''" class="loading">
+  <div v-if="$store.state.loading" class="loading">
     <div>
       <img class="main" src="/image/icon.svg" />
     </div>
@@ -12,8 +12,8 @@ export default {
       load : ""
     }
   },
-  mounted() {
-    this.load = "load"
-  }
+  // mounted() {
+  //   this.load = "load"
+  // }
 }
 </script>

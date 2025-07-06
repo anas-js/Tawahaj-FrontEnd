@@ -1,0 +1,32 @@
+[
+  {
+    "name": "البرمجة",
+    "icon": "ri-code-s-slash-line",
+    "url": "content=programming",
+    "list": [
+      {
+        "name": "برمجة مواقع",
+        "url": "content=programming&web=true"
+      },
+      {
+        "name": "برمجة العاب",
+        "url": "content=programming&game=true"
+      }
+    ]
+  },
+  {
+    "name": "التصميم",
+    "icon": "ri-pencil-ruler-2-line",
+    "url": "content=design",
+    "list": [
+      {
+        "name": "تصميم شعارات",
+        "url": "shar=true"
+      },
+      {
+        "name": "تصميم بوستات",
+        "url": "post=true"
+      }
+    ]
+  }
+]

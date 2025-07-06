@@ -1,0 +1,48 @@
+[
+  {
+    "photoURL": "background-user.svg",
+    "name": "راكان",
+    "class": {
+      "name": "مصمم شعارات",
+      "url": "/desiggn"
+    },
+    "username": "@dev_none",
+    "content": [
+      {
+        "name": "قصص",
+        "url": "/dfdf"
+      }
+    ],
+    "contentPhoto": [
+      "https://.....image.png",
+      "https://.....image.png",
+      "https://.....image.png",
+      "https://.....image.png"
+    ],
+    "isMember": false,
+    "isContributor": false
+  },
+  {
+    "photoURL": "background-user.svg",
+    "name": "راكان",
+    "class": {
+      "name": "مصمم شعارات",
+      "url": "/desiggn"
+    },
+    "username": "@dev_none",
+    "content": [
+      {
+        "name": "قصص",
+        "url": "/dfdf"
+      }
+    ],
+    "contentPhoto": [
+      "https://.....image.png",
+      "https://.....image.png",
+      "https://.....image.png",
+      "https://.....image.png"
+    ],
+    "isMember": true,
+    "isContributor": false
+  }
+]

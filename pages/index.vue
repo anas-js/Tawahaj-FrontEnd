@@ -32,15 +32,8 @@
                 data-aos-duration="3000"
                 data-aos-once="true"
               >
-                <!-- <nuxt-link to="/" class="orange-btn">
-                  <div class="contentText">
-                    <i class="icon-5px ri-user-6-line"></i
-                    ><span>أضف حسابك</span>
-                  </div>
-                  <span class="shadow"></span>
-                </nuxt-link> -->
                 <orBtn
-                  v-if="$auth.loggedIn"
+                  v-if="$store.state.isLoggin"
                   text-btn="الملف الشخصي"
                   to="/"
                   icon="ri-user-6-line"
@@ -130,16 +123,29 @@
     >
       <div class="container">
         <h2>صناع المحتوى</h2>
-        <p v-if="data === ''" class="loading">جاري التحميل...</p>
-        <div v-if="data !== ''" class="row">
+        <div v-if="allUser !== ''" class="row">
           <userBox
             v-for="(dataUser, index) in lengthUser"
             :key="index"
-            :data-user="data.user"
+            :data-user="allUser"
             :length-user="index"
+            classitem="col-lg-6"
           />
         </div>
-        <orBtn v-if="data !== ''" text-btn="المزيد" to="/" icon="ri-add-line" />
+
+        <div v-if="allUser == ''" class="row">
+          <userLoading
+            v-for="(element, index) in 8"
+            :key="index"
+            classitem="col-lg-6"
+          />
+        </div>
+        <orBtn
+          v-if="allUser !== ''"
+          text-btn="المزيد"
+          to="/"
+          icon="ri-add-line"
+        />
       </div>
     </section>
 
@@ -154,13 +160,13 @@
           <div class="row">
             <div class="col-lg-6 d-flex align-items-center">
               <div class="text">
-                <h2>انظم الآن</h2>
+                <h2>انضم الينا الآن</h2>
                 <p>
-                  هل مملت من عدم وجود المتابعين؟ هل مملت من عدم وجود المتابعين؟
-                  هل مملت من عدم وجود المتابعين؟ هل مملت من عدم وجود المتابعين؟
+                  وشاركنا الرحلة في تعزيز و دعم صناع المحتوى العربي بشتى
+                  مجالاتهم و آفاقهم؛ نحو عالم يسوده الإبداع و البهاء 💡.
                 </p>
                 <orBtn
-                  v-if="$auth.loggedIn"
+                  v-if="$store.state.isLoggin"
                   text-btn="الملف الشخصي"
                   to="/"
                   icon="ri-user-6-line"
@@ -190,7 +196,7 @@
 
 <script>
 // import mydata from "@/static/user.json";
-import axios from 'axios';
+// import axios from 'axios';
 import $ from 'jquery/dist/jquery.min.js';
 export default {
   //   asyncData({$axios}) {
@@ -202,11 +208,12 @@ export default {
   // },
   data() {
     return {
-      data: '',
+      allUser: '',
       lengthUser: 20,
       numCrator: 0,
       myinterval: '',
       anmiteon: '',
+      myusers : 0
     };
   },
   // },
@@ -271,16 +278,39 @@ export default {
   // });
   // }
 
-  mounted() {
-    const myThis = this;
-    axios.get('/user.json').then(function (status) {
-      if (status.data.user.length >= 8) {
+ async mounted() {
+const myThis = this;
+          await this.$fire.firestore
+              .collection('username')
+              .doc("collection").get().then(res => {
+             myThis.myusers = res.data().data.length
+              })
+
+
+    // axios.get('/api/all.json').then(function (status) {
+    //   if (status.data.length >= 8) {
+    //     myThis.lengthUser = 8;
+    //   } else {
+    //     myThis.lengthUser = status.data.length;
+    //   }
+    //   myThis.allUser = status.data;
+    // });
+
+             myThis.$fire.firestore
+              .collection('user')
+              .get().then(function(data) {
+
+
+                       if (data.docs.length >= 8) {
         myThis.lengthUser = 8;
       } else {
-        myThis.lengthUser = status.data.user.length;
+        myThis.lengthUser = data.docs.length;
       }
-      myThis.data = status.data;
-    });
+      myThis.allUser = data.docs;
+
+
+              });
+
     // $(".creator-content .row").append(`
     // <nuxt-link to="/">GG</nuxt-link>
     // `)
@@ -288,10 +318,13 @@ export default {
     // console.log(this.$auth)
 
     this.myinterval = setInterval(function () {
-      myThis.numCrator = myThis.numCrator + 1;
-      if (myThis.numCrator === 100) {
+
+      if (myThis.numCrator >= myThis.myusers) {
         clearInterval(myThis.myinterval);
+      } else {
+         myThis.numCrator = myThis.numCrator + 1;
       }
+
     }, 10);
 
     const myper = $('.per');
@@ -304,9 +337,9 @@ export default {
       lengthAnmaion++;
     }, 200);
   },
-  auth: 'guest',
+ // auth: 'guest',
   beforeDestroy() {
-    clearInterval(this.myinterval);
+    // clearInterval(this.myinterval);
     clearInterval(this.anmiteon);
   },
 };
